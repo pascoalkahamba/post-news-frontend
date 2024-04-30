@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Key, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -11,26 +11,55 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { LanguageDetailsI } from "@/app/interfaces";
+
+const languageDetails = [
+  {
+    language: "Português",
+    pictue: "/portuguese.jpg",
+  },
+  {
+    language: "Inglês",
+    pictue: "/english.jpg",
+  },
+];
 
 export function LanguageToggle() {
   const { setTheme } = useTheme();
 
+  const currentLanguage = languageDetails.find(
+    ({ language, pictue: _ }) => language === "Português"
+  );
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle Laguange</span>
+        <Button
+          variant="default"
+          size="icon"
+          className="flex justify-center items-center gap-3"
+        >
+          <span>{currentLanguage?.language}</span>
+          <Image
+            src={currentLanguage?.pictue ?? ""}
+            width={20}
+            height={10}
+            alt="Language picture"
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Português
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Inglês
-        </DropdownMenuItem>
+        {languageDetails.map(({ language, pictue }) => (
+          <DropdownMenuItem
+            key={language}
+            onClick={() => setTheme("theme")}
+            className="flex justify-center items-center gap-2"
+          >
+            <span>{language}</span>
+            <Image src={pictue} width={20} height={10} alt="Language picture" />
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
