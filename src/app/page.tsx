@@ -10,6 +10,16 @@ export interface CircleI {
 }
 
 export default function HomePage() {
+  function isPalindrome(num: number): boolean {
+    const nums = String(num).split("");
+    const firstNum = nums[0];
+    const lastNum = nums.at(-1);
+
+    if (firstNum === lastNum) return true;
+    else return false;
+  }
+
+  console.log(isPalindrome(1212312));
   return (
     <section>
       <p>Hello World</p>

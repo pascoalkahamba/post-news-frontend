@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { LanguageDetailsI } from "@/app/interfaces";
 
 const languageDetails = [
   {
@@ -38,7 +37,7 @@ export function LanguageToggle() {
         <Button
           variant="default"
           size="icon"
-          className="flex justify-center items-center gap-3"
+          className="flex justify-center items-center gap-3 rou"
         >
           <span>{currentLanguage?.language}</span>
           <Image

@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import { useRouter, useParams, usePathname } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,34 +14,47 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export default function NavigationMenuLinks() {
+  const pathname = usePathname();
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={
+            pathname === "/"
+              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              : "mb-[-8px] p-2"
+          }
+        >
+          <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Página inicial
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={
+            pathname === "/notifications"
+              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              : "mb-[-8px] p-2"
+          }
+        >
+          <Link href="/notifications" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Notificações
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={
+            pathname === "/best-posts"
+              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              : "mb-[-8px] p-2"
+          }
+        >
+          <Link href="/best-posts" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Posts em destaques
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
