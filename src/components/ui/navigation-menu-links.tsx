@@ -4,7 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { useRouter, useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -22,7 +23,7 @@ export default function NavigationMenuLinks() {
         <NavigationMenuItem
           className={
             pathname === "/"
-              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              ? "border-b-2 border-blue-600 border-solid mb-[-8px] p-2"
               : "mb-[-8px] p-2"
           }
         >
@@ -35,7 +36,7 @@ export default function NavigationMenuLinks() {
         <NavigationMenuItem
           className={
             pathname === "/notifications"
-              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              ? "border-b-2 border-blue-600 border-solid mb-[-8px] p-2"
               : "mb-[-8px] p-2"
           }
         >
@@ -48,7 +49,7 @@ export default function NavigationMenuLinks() {
         <NavigationMenuItem
           className={
             pathname === "/best-posts"
-              ? "border-b-2 border-cyan-600 border-solid mb-[-8px] p-2"
+              ? "border-b-2 border-blue-600 border-solid mb-[-8px] p-2"
               : "mb-[-8px] p-2"
           }
         >

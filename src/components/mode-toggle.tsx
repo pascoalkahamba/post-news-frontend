@@ -17,6 +17,7 @@ export function ModeToggle() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="default"
+          className="hover:bg-blue-600 hover:cursor-pointer rounded"
           size="icon"
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >

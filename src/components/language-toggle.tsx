@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Key, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -50,13 +49,16 @@ export function LanguageToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {languageDetails.map(({ language, pictue }) => (
-          <DropdownMenuItem
-            key={language}
-            onClick={() => setTheme("theme")}
-            className="flex justify-center items-center gap-2"
-          >
-            <span>{language}</span>
-            <Image src={pictue} width={20} height={10} alt="Language picture" />
+          <DropdownMenuItem key={language} className="p-0">
+            <div className="flex justify-center items-center gap-2 p-2 hover:bg-blue-500 dark:hover:bg-blue-600 rounded cursor-pointer w-full">
+              <span>{language}</span>
+              <Image
+                src={pictue}
+                width={20}
+                height={10}
+                alt="Language picture"
+              />
+            </div>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
