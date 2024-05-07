@@ -74,8 +74,15 @@ export default function CreateAccount() {
                     className=" rounded-full p-2"
                   />
                 </FormControl>
-
-                <FormMessage className="text-red-500" />
+                <div className="flex justify-between items-center">
+                  <FormMessage className="text-red-500" />
+                  <Link
+                    href="/forgot-password"
+                    className="italic text-blue-600 text-sm"
+                  >
+                    Esqueceu a senha
+                  </Link>
+                </div>
               </FormItem>
             )}
           />
@@ -104,7 +111,7 @@ export default function CreateAccount() {
           </div>
           <p className=" flex items-center justify-center gap-1">
             Não tem uma conta ainda?
-            <Link href="/create-account" className="text-blue-400">
+            <Link href="/create-account" className="text-blue-600">
               Criar uma conta agora
             </Link>
           </p>
