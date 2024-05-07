@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { FcGoogle } from "react-icons/fc";
 import { Input } from "@/components/ui/input";
 import { DataLoginProps } from "@/@types";
 import schema from "@/schemas/login-schema";
@@ -91,8 +92,9 @@ export default function CreateAccount() {
           </div>
           <Button
             type="submit"
-            className="bg-blue-600 rounded-full hover:bg-blue-500 my-2"
+            className="bg-blue-400 rounded-full hover:bg-blue-300 my-2 flex justify-center items-center gap-2"
           >
+            <FcGoogle />
             Entrar com uma conta google
           </Button>
           <div className="flex justify-center items-center">
