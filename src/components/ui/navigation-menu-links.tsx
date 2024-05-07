@@ -27,7 +27,7 @@ export default function NavigationMenuLinks() {
               : "mb-[-8px] p-2"
           }
         >
-          <Link href="/" legacyBehavior passHref>
+          <Link href="/create-account" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Página inicial
             </NavigationMenuLink>
