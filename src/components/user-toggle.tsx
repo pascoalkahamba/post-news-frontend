@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { LogOut, User, UserCheck } from "lucide-react";
+import Link from "next/link";
 
 const languageDetails = [
   {
@@ -23,42 +25,35 @@ const languageDetails = [
   },
 ];
 
-export function LanguageToggle() {
-  const currentLanguage = languageDetails.find(
-    ({ language, pictue: _ }) => language === "Português"
-  );
-
+export default function UserToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="default"
           size="icon"
-          className="flex justify-center items-center gap-3"
+          className="dark:hover:bg-blue-600 hover:bg-blue-500 p-2 hover:cursor-pointer rounded"
         >
-          <span>{currentLanguage?.language}</span>
-          <Image
-            src={currentLanguage?.pictue ?? ""}
-            width={20}
-            height={10}
-            alt="Language picture"
-          />
+          <User />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languageDetails.map(({ language, pictue }) => (
-          <DropdownMenuItem key={language} className="p-0">
+        <Link href="/profile">
+          <DropdownMenuItem className="p-0">
             <div className="flex justify-center items-center gap-2 p-2 hover:bg-blue-500 dark:hover:bg-blue-600 rounded cursor-pointer w-full">
-              <span>{language}</span>
-              <Image
-                src={pictue}
-                width={20}
-                height={10}
-                alt="Language picture"
-              />
+              <span>Perfil</span>
+              <UserCheck />
             </div>
           </DropdownMenuItem>
-        ))}
+        </Link>
+        <Link href="/logout">
+          <DropdownMenuItem className="p-0">
+            <div className="flex justify-center items-center gap-2 p-2 hover:bg-blue-500 dark:hover:bg-blue-600 rounded cursor-pointer w-full">
+              <span>Sair</span>
+              <LogOut />
+            </div>
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
