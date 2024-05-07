@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -106,7 +105,7 @@ export default function CreateAccount() {
           />
           <Button
             type="submit"
-            className="bg-blue-600 rounded-full hover:bg-blue-500"
+            className="bg-blue-600 rounded-full hover:bg-blue-500 mt-3"
           >
             Cadastrar
           </Button>
