@@ -1,10 +1,11 @@
+"use client";
 import Header from "../header";
 
-interface DashboardLayoutProps {
+interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <section>
       <Header />
