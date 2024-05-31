@@ -16,8 +16,15 @@ import { Input } from "@/components/ui/input";
 import { DataCreateAccountProps } from "@/@types";
 import schema from "@/schemas/create-account-schema";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { createAccount } from "@/server";
 
-export default function CreateAccount() {
+export default function AccountForm() {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => createAccount,
+  });
+
   const form = useForm<DataCreateAccountProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -32,6 +39,7 @@ export default function CreateAccount() {
     console.log("email ", email);
     console.log("password ", password);
     console.log("username ", username);
+    console.log("user data ", data);
   };
 
   return (

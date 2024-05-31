@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/styles.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "@/components/themeProvider";
 import "@radix-ui/themes/styles.css";
 import Providers from "@/util/providers";
 const inter = Inter({ subsets: ["latin"] });

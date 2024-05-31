@@ -1,12 +1,12 @@
-import LoginForm from "@/components/loginForm";
+import AccountForm from "@/components/accountForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Post-news | Fazer Login",
-  description: "Page to user take loging to your account.",
+  title: "Post-news | Criar Conta",
+  description: "Page to user creates your account on the website.",
 };
 
-export default async function LoginAccount() {
+export default async function CreatedAccount() {
   const userLogged = await fetch("https://github.com/PascoalKahamba", {
     next: {
       revalidate: 3000,
@@ -15,5 +15,5 @@ export default async function LoginAccount() {
   });
 
   console.log("userLogged", userLogged);
-  return <LoginForm />;
+  return <AccountForm />;
 }

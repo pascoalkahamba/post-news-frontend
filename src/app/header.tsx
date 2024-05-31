@@ -1,16 +1,11 @@
-// "use client";
-import { LanguageToggle } from "@/components/language-toggle";
-import { ModeToggle } from "@/components/mode-toggle";
+import { LanguageToggle } from "@/components/languageToggle";
+import { ModeToggle } from "@/components/modeToggle";
 import NavigationMenuLinks from "@/components/ui/navigation-menu-links";
-import UserToggle from "@/components/user-toggle";
-import { User, MessageSquareMore } from "lucide-react";
+import UserToggle from "@/components/userToggle";
+import { MessageSquareMore } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+
 export default function Header() {
-  const pathname = usePathname();
-
-  console.log("pathname", pathname);
-
   return (
     <section className="flex justify-around items-center bg-blue-300 dark:bg-blue-900 py-2">
       <Image
