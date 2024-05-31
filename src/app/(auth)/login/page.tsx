@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,12 +12,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { FcGoogle } from "react-icons/fc";
+import { Metadata } from "next";
 import { Input } from "@/components/ui/input";
 import { DataLoginProps } from "@/@types";
 import schema from "@/schemas/login-schema";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function CreateAccount() {
+  const { push } = useRouter();
   const form = useForm<DataLoginProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -32,6 +34,8 @@ export default function CreateAccount() {
 
     console.log("email ", email);
     console.log("password ", password);
+
+    push("/");
   };
 
   return (
