@@ -1,22 +1,26 @@
 import { appAxios } from "@/axios";
-import { CreateAccountI } from "../interfaces/index";
-import { LoginAccountI } from "@/@types";
+import { CreateAccountI, ErrorMessage, UserLoggedI } from "../interfaces/index";
+import { LoginAccountI, UserCreatedI } from "@/@types";
 
 export async function createAccount({ email, name, password }: CreateAccountI) {
-  const userCreated = await appAxios.post<CreateAccountI>("/user", {
+  const response = await appAxios.post<CreateAccountI>("user", {
     email,
     name,
     password,
   });
 
+  const userCreated: UserCreatedI | ErrorMessage = response.data;
+
   return userCreated;
 }
 
 export async function loginAccount({ email, password }: LoginAccountI) {
-  const userLogged = await appAxios.post<LoginAccountI>("user/login", {
+  const response = await appAxios.post<LoginAccountI>("user/login", {
     email,
     password,
   });
+
+  const userLogged: UserLoggedI = response.data as unknown as UserLoggedI;
 
   return userLogged;
 }

@@ -7,13 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default async function CreatedAccount() {
-  const userLogged = await fetch("https://github.com/PascoalKahamba", {
-    next: {
-      revalidate: 3000,
-    },
-    cache: "force-cache",
-  });
-
-  console.log("userLogged", userLogged);
   return <AccountForm />;
 }

@@ -20,15 +20,27 @@ import { useQuery } from "@tanstack/react-query";
 import { createAccount } from "@/server";
 
 export default function AccountForm() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: () => createAccount,
-  });
-
   const form = useForm<DataCreateAccountProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
   });
+
+  const {
+    watch,
+    formState: { isSubmitting, isSubmitSuccessful },
+  } = form;
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: () =>
+      createAccount({
+        email: watch("email"),
+        name: watch("username"),
+        password: watch("password"),
+      }),
+  });
+
+  console.log("data", data);
 
   const onSubmit: SubmitHandler<DataCreateAccountProps> = async (
     { email, password, username },
@@ -36,10 +48,13 @@ export default function AccountForm() {
   ) => {
     event?.preventDefault();
 
-    console.log("email ", email);
-    console.log("password ", password);
-    console.log("username ", username);
-    console.log("user data ", data);
+    const userData = await createAccount({
+      email: email,
+      name: username,
+      password: password,
+    });
+
+    console.log("user data ", userData);
   };
 
   return (
@@ -115,7 +130,11 @@ export default function AccountForm() {
             type="submit"
             className="bg-blue-600 rounded-full hover:bg-blue-500 mt-3"
           >
-            Cadastrar
+            {isSubmitting
+              ? "Cadastrando..."
+              : isSubmitSuccessful
+              ? "Cadastrado"
+              : "Cadastrar"}
           </Button>
         </div>
       </form>

@@ -7,3 +7,17 @@ export interface CreateAccountI {
   email: string;
   password: string;
 }
+
+export interface UserLoggedI {
+  user: {
+    id: number;
+    email: string;
+    name: string;
+  };
+  userToken: string;
+}
+
+export interface ErrorMessage {
+  message: string;
+  stattus: number;
+}

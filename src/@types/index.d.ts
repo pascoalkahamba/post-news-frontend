@@ -10,3 +10,4 @@ type DataCreateAccountProps = z.infer<typeof createAccountSchema>;
 type DataLoginProps = z.infer<typeof loginSchema>;
 
 type LoginAccountI = Omit<CreateAccountI, "name">;
+type UserCreatedI = Omit<CreateAccountI, "password">;
