@@ -19,7 +19,8 @@ import schema from "@/schemas/login-schema";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { createAccount } from "@/server";
+import { createAccount, loginAccount } from "@/server";
+import { useCookies } from "react-cookie";
 
 export default function LoginForm() {
   const { push } = useRouter();
@@ -28,16 +29,24 @@ export default function LoginForm() {
     resolver: zodResolver(schema),
   });
 
+  const {
+    formState: { isSubmitSuccessful, isSubmitting },
+  } = form;
+
   const onSubmit: SubmitHandler<DataLoginProps> = async (
     { email, password },
     event
   ) => {
     event?.preventDefault();
 
+    const logged = await loginAccount({ email, password });
     console.log("email ", email);
     console.log("password ", password);
+    console.log("user logged", logged);
 
-    push("/");
+    if (logged.user) {
+      push("/");
+    }
   };
 
   return (
@@ -46,7 +55,11 @@ export default function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 flex justify-center items-center py-12"
       >
-        <div className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-300 w-[35%]">
+        <div
+          className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-300 w-[35%]"
+          data-aos="fade-right"
+          data-aos-duration="1400"
+        >
           <h1 className="text-center font-bold text-2xl">Post News</h1>
           <FormField
             control={form.control}
@@ -117,7 +130,7 @@ export default function LoginForm() {
           </div>
           <p className=" flex items-center justify-center gap-1">
             Não tem uma conta ainda?
-            <Link href="/create-account" className="text-blue-600">
+            <Link href="/createAccount" className="text-blue-600">
               Criar uma conta agora
             </Link>
           </p>

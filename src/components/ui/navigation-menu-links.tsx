@@ -48,12 +48,12 @@ export default function NavigationMenuLinks() {
         </NavigationMenuItem>
         <NavigationMenuItem
           className={
-            pathname === "/best-posts"
+            pathname === "/bestPosts"
               ? "border-b-2 border-blue-600 border-solid mb-[-8px] p-2"
               : "mb-[-8px] p-2"
           }
         >
-          <Link href="/best-posts" legacyBehavior passHref>
+          <Link href="/bestPosts" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Posts em destaques
             </NavigationMenuLink>

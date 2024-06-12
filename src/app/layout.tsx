@@ -4,6 +4,9 @@ import "@/app/styles.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import "@radix-ui/themes/styles.css";
 import Providers from "@/util/providers";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import "aos/dist/aos.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,6 +29,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers>{children}</Providers>
+          <ToastContainer />
         </ThemeProvider>
       </body>
     </html>

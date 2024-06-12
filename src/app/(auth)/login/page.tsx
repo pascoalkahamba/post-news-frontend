@@ -6,14 +6,6 @@ export const metadata: Metadata = {
   description: "Page to user take loging to your account.",
 };
 
-export default async function LoginAccount() {
-  const userLogged = await fetch("https://github.com/PascoalKahamba", {
-    next: {
-      revalidate: 3000,
-    },
-    cache: "force-cache",
-  });
-
-  console.log("userLogged", userLogged);
+export default function LoginAccount() {
   return <LoginForm />;
 }

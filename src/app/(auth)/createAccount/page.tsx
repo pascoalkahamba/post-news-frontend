@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "Page to user creates your account on the website.",
 };
 
-export default async function CreatedAccount() {
+export default function CreatedAccount() {
   return <AccountForm />;
 }
