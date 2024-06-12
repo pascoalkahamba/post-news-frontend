@@ -59,9 +59,10 @@ export default function VerifyEmail() {
                 <FormLabel>Nome do Usuário: </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Digite o codigo de verificação enviado no seu email"
+                    type="number"
+                    placeholder="Digite o codigo de verificação"
                     {...field}
-                    className=" rounded-full p-2"
+                    className="rounded-full p-2"
                     maxLength={6}
                   />
                 </FormControl>
@@ -73,6 +74,7 @@ export default function VerifyEmail() {
 
           <ButtonSumit
             isDirty={isDirty}
+            className="self-center p-4"
             isValid={isValid}
             isSubmitting={isSubmitting}
           />

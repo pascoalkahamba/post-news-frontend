@@ -89,6 +89,7 @@ export default function AccountForm() {
                 <FormLabel>Nome do Usuário: </FormLabel>
                 <FormControl>
                   <Input
+                    type="number"
                     placeholder="Digite o nome do usuário"
                     {...field}
                     className=" rounded-full p-2"
