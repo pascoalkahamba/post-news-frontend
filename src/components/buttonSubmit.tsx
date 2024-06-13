@@ -4,6 +4,8 @@ interface ButtonSumitProps {
   isSubmitting: boolean;
   isValid: boolean;
   isDirty: boolean;
+  target: string;
+  targetLoading: string;
   className?: string;
 }
 
@@ -11,6 +13,8 @@ export default function ButtonSumit({
   isSubmitting,
   isValid,
   isDirty,
+  target,
+  targetLoading,
   className,
 }: ButtonSumitProps) {
   const disabled = !isValid || !isDirty;
@@ -24,7 +28,7 @@ export default function ButtonSumit({
       }`}
       disabled={disabled}
     >
-      {isSubmitting ? "Cadastrando..." : "Cadastrar"}
+      {isSubmitting ? targetLoading : target}
     </Button>
   );
 }

@@ -28,8 +28,6 @@ export default function AccountForm() {
     resolver: zodResolver(schema),
   });
 
-  const notifyError = () => toast.error("email already exist!");
-
   const {
     reset,
     formState: { isSubmitting, isDirty, isValid },
@@ -49,16 +47,17 @@ export default function AccountForm() {
       password: password,
     });
 
-    if (userCreated.email) {
-      toast.success("Conta criada com sucesso.");
-      push("/login");
+    if (userCreated.message) {
+      toast.success("Dados enviados com sucesso.");
+      toast.info("enviamos um codigo de confirmação no seu email.");
+      push("/confirmEmail");
       reset();
       console.log("All good");
       return;
     }
 
     console.log("Something got wrong");
-    notifyError();
+    toast.error("Email já cadastrado.");
 
     console.log("user data ", userCreated);
   };
@@ -89,7 +88,6 @@ export default function AccountForm() {
                 <FormLabel>Nome do Usuário: </FormLabel>
                 <FormControl>
                   <Input
-                    type="number"
                     placeholder="Digite o nome do usuário"
                     {...field}
                     className=" rounded-full p-2"
@@ -138,6 +136,8 @@ export default function AccountForm() {
             )}
           />
           <ButtonSumit
+            target="Cadastrar"
+            targetLoading="Cadastrando..."
             isDirty={isDirty}
             isValid={isValid}
             isSubmitting={isSubmitting}

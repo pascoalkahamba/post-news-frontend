@@ -1,5 +1,9 @@
 import { appAxios } from "@/axios";
-import { CreateAccountI, UserLoggedI } from "../interfaces/index";
+import {
+  CreateAccountI,
+  SuccessMessageI,
+  UserLoggedI,
+} from "../interfaces/index";
 import { LoginAccountI, UserCreatedI } from "@/@types";
 
 export async function createAccount({ email, name, password }: CreateAccountI) {
@@ -9,7 +13,8 @@ export async function createAccount({ email, name, password }: CreateAccountI) {
     password,
   });
 
-  const userCreated: UserCreatedI = response.data;
+  const userCreated: SuccessMessageI =
+    response.data as unknown as SuccessMessageI;
 
   return userCreated;
 }
@@ -23,4 +28,14 @@ export async function loginAccount({ email, password }: LoginAccountI) {
   const userLogged: UserLoggedI = response.data as unknown as UserLoggedI;
 
   return userLogged;
+}
+
+export async function confirmEmail(validateCode: number | string) {
+  const response = await appAxios.post<UserCreatedI>("/user/verifyEmail", {
+    validateCode,
+  });
+
+  const emailValidated = response.data;
+
+  return emailValidated;
 }

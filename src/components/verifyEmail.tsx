@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "./ui/input";
 import ButtonSumit from "./buttonSubmit";
+import { toast } from "react-toastify";
+import { confirmEmail } from "@/server";
 
 export default function VerifyEmail() {
   const form = useForm<DataVerifyEmailProps>({
@@ -34,6 +36,19 @@ export default function VerifyEmail() {
   ) => {
     event?.preventDefault();
 
+    const userCreated = await confirmEmail(+validateCode);
+
+    if (userCreated.email) {
+      push("/");
+      reset();
+      console.log("Conta criada.");
+      toast.success("Conta criada com sucesso.");
+      return;
+    }
+
+    toast.error("código de verificação errado.");
+    toast.info("Enviamos o código de verificação no seu email");
+    toast.info("O código de verificação expira após cinco minutos.");
     console.log("validateCode ", validateCode);
   };
   return (
@@ -56,7 +71,7 @@ export default function VerifyEmail() {
             name="validateCode"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome do Usuário: </FormLabel>
+                <FormLabel>Código de verificação: </FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -74,6 +89,8 @@ export default function VerifyEmail() {
 
           <ButtonSumit
             isDirty={isDirty}
+            target="Verificar"
+            targetLoading="Verificando..."
             className="self-center p-4"
             isValid={isValid}
             isSubmitting={isSubmitting}

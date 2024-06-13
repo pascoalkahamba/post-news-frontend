@@ -21,3 +21,7 @@ export interface ErrorMessage {
   message: string;
   stattus: number;
 }
+
+export interface SuccessMessageI {
+  message: string;
+}
