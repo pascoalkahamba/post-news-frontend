@@ -13,11 +13,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "./ui/input";
+import { useMutation } from "@tanstack/react-query";
 import ButtonSumit from "./buttonSubmit";
 import { toast } from "react-toastify";
 import { confirmEmail } from "@/server";
 
 export default function VerifyEmail() {
+  const { data, isPending, isError, isSuccess, mutate } = useMutation({
+    mutationFn: (validateCode: string | number) => {
+      return confirmEmail(validateCode);
+    },
+  });
   const form = useForm<DataVerifyEmailProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -25,7 +31,7 @@ export default function VerifyEmail() {
 
   const {
     reset,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = form;
 
   const { push } = useRouter();
@@ -36,20 +42,22 @@ export default function VerifyEmail() {
   ) => {
     event?.preventDefault();
 
-    const userCreated = await confirmEmail(+validateCode);
+    mutate(+validateCode);
 
-    if (userCreated.email) {
+    if (isSuccess) {
       push("/");
       reset();
-      console.log("Conta criada.");
+      console.log("Conta criada.", data);
       toast.success("Conta criada com sucesso.");
       return;
     }
 
-    toast.error("código de verificação errado.");
-    toast.info("Enviamos o código de verificação no seu email");
-    toast.info("O código de verificação expira após cinco minutos.");
-    console.log("validateCode ", validateCode);
+    if (isError) {
+      toast.error("código de verificação errado.");
+      toast.info("Enviamos o código de verificação no seu email");
+      toast.info("O código de verificação expira após cinco minutos.");
+      console.log("validateCode ", validateCode);
+    }
   };
   return (
     <Form {...form}>
@@ -93,7 +101,7 @@ export default function VerifyEmail() {
             targetLoading="Verificando..."
             className="self-center p-4"
             isValid={isValid}
-            isSubmitting={isSubmitting}
+            isSubmitting={isPending}
           />
         </div>
       </form>

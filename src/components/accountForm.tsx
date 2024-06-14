@@ -16,13 +16,19 @@ import { Input } from "@/components/ui/input";
 import { DataCreateAccountProps } from "@/@types";
 import schema from "@/schemas/create-account-schema";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
 import { createAccount } from "@/server";
 import ButtonSumit from "./buttonSubmit";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
+import { CreateAccountI } from "@/interfaces";
 
 export default function AccountForm() {
+  const { data, isPending, isError, isSuccess, mutate } = useMutation({
+    mutationFn: (newUser: CreateAccountI) => {
+      return createAccount(newUser);
+    },
+  });
   const form = useForm<DataCreateAccountProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -30,7 +36,7 @@ export default function AccountForm() {
 
   const {
     reset,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = form;
 
   const { push } = useRouter();
@@ -41,25 +47,25 @@ export default function AccountForm() {
   ) => {
     event?.preventDefault();
 
-    const userCreated = await createAccount({
-      email: email,
+    mutate({
+      email,
+      password,
       name: username,
-      password: password,
     });
 
-    if (userCreated.message) {
+    if (isSuccess) {
       toast.success("Dados enviados com sucesso.");
       toast.info("enviamos um codigo de confirmação no seu email.");
       push("/confirmEmail");
       reset();
-      console.log("All good");
+      console.log("user data", data);
       return;
     }
 
-    console.log("Something got wrong");
-    toast.error("Email já cadastrado.");
-
-    console.log("user data ", userCreated);
+    if (isError) {
+      console.log("Something got wrong");
+      toast.error("Email já cadastrado.");
+    }
   };
 
   return (
@@ -140,7 +146,7 @@ export default function AccountForm() {
             targetLoading="Cadastrando..."
             isDirty={isDirty}
             isValid={isValid}
-            isSubmitting={isSubmitting}
+            isSubmitting={isPending}
           />
         </div>
       </form>
