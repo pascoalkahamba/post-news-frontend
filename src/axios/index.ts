@@ -8,7 +8,7 @@ axios.interceptors.response.use(
   (error) => {
     console.log("Axios error ", error);
 
-    return Promise.reject(error);
+    return false;
   }
 );
 
@@ -22,7 +22,7 @@ axios.interceptors.request.use(
     // Do something with request error
 
     console.log("Axios Error ", error);
-    return Promise.reject(error);
+    return false;
   }
 );
 

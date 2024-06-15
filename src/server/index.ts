@@ -7,11 +7,15 @@ import {
 import { LoginAccountI, UserCreatedI } from "@/@types";
 
 export async function createAccount({ email, name, password }: CreateAccountI) {
-  const response = await appAxios.post<CreateAccountI>("/user", {
-    email,
-    name,
-    password,
-  });
+  const response = await appAxios.post<CreateAccountI>(
+    "/user",
+    {
+      email,
+      name,
+      password,
+    },
+    { withCredentials: true }
+  );
 
   const userCreated: SuccessMessageI =
     response.data as unknown as SuccessMessageI;
@@ -20,10 +24,14 @@ export async function createAccount({ email, name, password }: CreateAccountI) {
 }
 
 export async function loginAccount({ email, password }: LoginAccountI) {
-  const response = await appAxios.post<LoginAccountI>("/user/login", {
-    email,
-    password,
-  });
+  const response = await appAxios.post<LoginAccountI>(
+    "/user/login",
+    {
+      email,
+      password,
+    },
+    { withCredentials: true }
+  );
 
   const userLogged: UserLoggedI = response.data as unknown as UserLoggedI;
 
@@ -31,9 +39,13 @@ export async function loginAccount({ email, password }: LoginAccountI) {
 }
 
 export async function confirmEmail(validateCode: number | string) {
-  const response = await appAxios.post<UserCreatedI>("/user/verifyEmail", {
-    validateCode,
-  });
+  const response = await appAxios.post<UserCreatedI>(
+    "/user/verifyEmail",
+    {
+      validateCode,
+    },
+    { withCredentials: true }
+  );
 
   const emailValidated = response.data;
 

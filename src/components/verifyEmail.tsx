@@ -24,6 +24,7 @@ export default function VerifyEmail() {
       return confirmEmail(validateCode);
     },
   });
+
   const form = useForm<DataVerifyEmailProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -63,7 +64,7 @@ export default function VerifyEmail() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 flex justify-center items-center py-12"
+        className="space-y-8 flex justify-center items-center py-12 bg-[url('/stories.jpg')] h-svh bg-no-repeat bg-cover"
       >
         <div
           className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-300 w-[35%]"

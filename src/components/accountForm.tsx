@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -29,6 +28,7 @@ export default function AccountForm() {
       return createAccount(newUser);
     },
   });
+
   const form = useForm<DataCreateAccountProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
