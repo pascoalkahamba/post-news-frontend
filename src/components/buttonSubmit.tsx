@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 
 interface ButtonSumitProps {
-  isSubmitting: boolean;
+  isPending: boolean;
   isValid: boolean;
   isDirty: boolean;
   target: string;
@@ -10,7 +10,7 @@ interface ButtonSumitProps {
 }
 
 export default function ButtonSumit({
-  isSubmitting,
+  isPending,
   isValid,
   isDirty,
   target,
@@ -28,7 +28,7 @@ export default function ButtonSumit({
       }`}
       disabled={disabled}
     >
-      {isSubmitting ? targetLoading : target}
+      {isPending ? targetLoading : target}
     </Button>
   );
 }

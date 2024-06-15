@@ -72,13 +72,9 @@ export default function AccountForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 flex justify-center items-center py-12"
+        className="space-y-8 flex w-[50%] justify-center items-center"
       >
-        <div
-          className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-300 w-[35%]"
-          data-aos="fade-right"
-          data-aos-duration="1400"
-        >
+        <div className="flex flex-col gap-2 p-4 rounded-2xl bg-blue-300 w-[85%]">
           <h1 className="text-center font-bold text-2xl">Criar Conta</h1>
           <p className=" flex items-center justify-center gap-1">
             Já tens uma conta?
@@ -115,7 +111,7 @@ export default function AccountForm() {
                     type="password"
                     placeholder="Digite a senha"
                     {...field}
-                    className=" rounded-full p-2"
+                    className="rounded-full p-2"
                   />
                 </FormControl>
 
@@ -146,7 +142,7 @@ export default function AccountForm() {
             targetLoading="Cadastrando..."
             isDirty={isDirty}
             isValid={isValid}
-            isSubmitting={isPending}
+            isPending={isPending}
           />
         </div>
       </form>

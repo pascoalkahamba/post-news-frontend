@@ -47,7 +47,7 @@ export async function confirmEmail(validateCode: number | string) {
     { withCredentials: true }
   );
 
-  const emailValidated = response.data;
+  const userCreated = response.data;
 
-  return emailValidated;
+  return userCreated;
 }

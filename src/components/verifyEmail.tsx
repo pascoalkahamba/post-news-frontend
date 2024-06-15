@@ -64,13 +64,9 @@ export default function VerifyEmail() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 flex justify-center items-center py-12 bg-[url('/stories.jpg')] h-svh bg-no-repeat bg-cover"
+        className="space-y-8 flex w-[50%] justify-center items-center"
       >
-        <div
-          className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-300 w-[35%]"
-          data-aos="fade-right"
-          data-aos-duration="1400"
-        >
+        <div className="flex flex-col gap-2 p-4 rounded-2xl bg-blue-300 w-[85%] h-[37%]">
           <h1 className="text-center font-bold text-2xl">
             Verificação da cota
           </h1>
@@ -102,7 +98,7 @@ export default function VerifyEmail() {
             targetLoading="Verificando..."
             className="self-center p-4"
             isValid={isValid}
-            isSubmitting={isPending}
+            isPending={isPending}
           />
         </div>
       </form>
