@@ -20,14 +20,15 @@ import { confirmEmail } from "@/server";
 
 export default function VerifyEmail() {
   const { data, isPending, isError, isSuccess, mutate } = useMutation({
-    mutationFn: (validateCode: string | number) => {
-      return confirmEmail(validateCode);
-    },
+    mutationFn: (validateCode: string | number) => confirmEmail(validateCode),
   });
 
   const form = useForm<DataVerifyEmailProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
+    defaultValues: {
+      validateCode: "",
+    },
   });
 
   const {

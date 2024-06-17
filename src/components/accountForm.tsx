@@ -24,14 +24,17 @@ import { CreateAccountI } from "@/interfaces";
 
 export default function AccountForm() {
   const { data, isPending, isError, isSuccess, mutate } = useMutation({
-    mutationFn: (newUser: CreateAccountI) => {
-      return createAccount(newUser);
-    },
+    mutationFn: (newUser: CreateAccountI) => createAccount(newUser),
   });
 
   const form = useForm<DataCreateAccountProps>({
     mode: "onChange",
     resolver: zodResolver(schema),
+    defaultValues: {
+      username: "",
+      password: "",
+      email: "",
+    },
   });
 
   const {
