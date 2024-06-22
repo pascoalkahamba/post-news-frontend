@@ -58,6 +58,7 @@ export default function LoginForm() {
     if (isSuccess) {
       toast.success("Login feito com sucesso.");
       console.log("uer data ", data);
+      localStorage.setItem("token", JSON.stringify(data.userToken));
       reset();
       push("/");
     }
@@ -99,6 +100,7 @@ export default function LoginForm() {
                 <FormControl>
                   <Input
                     placeholder="Digite a senha"
+                    type="password"
                     {...field}
                     className=" rounded-full p-2"
                   />

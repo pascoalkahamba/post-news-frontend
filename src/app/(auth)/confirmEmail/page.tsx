@@ -1,6 +1,12 @@
 import VerifyEmail from "@/components/verifyEmail";
 import Image from "next/image";
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Post-news | Verificação da cota",
+  description: "Page to user verify your email.",
+};
 
 export default function ConfirmEmail() {
   return (
@@ -19,7 +25,7 @@ export default function ConfirmEmail() {
             className="w-full h-full rounded-tl-2xl rounded-bl-2xl"
           />
         </div>
-        <VerifyEmail />{" "}
+        <VerifyEmail />
       </div>
     </section>
   );
